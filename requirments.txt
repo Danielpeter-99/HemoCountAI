@@ -1,0 +1,10 @@
+textwrap
+google-generativeai
+python-dotenv
+ipython
+tkinter
+Pillow
+re
+matplotlib
+pandas
+seaborn
