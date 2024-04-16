@@ -1,6 +1,4 @@
-import textwrap
 import google.generativeai as genai
-import os
 from dotenv import load_dotenv
 import PIL.Image
 import re
@@ -57,18 +55,15 @@ def plot_pie_chart(cell_counts):
 def main():
     load_dotenv()
 
-    api_key = load_api_key('api_key.txt')
-    print("API Key:", api_key)
-
-    GOOGLE_API_KEY = "<google=api-key>" #os.getenv('GOOGLE_API_KEY')
+    GOOGLE_API_KEY  = load_api_key('google_api_key.txt')
     genai.configure(api_key=GOOGLE_API_KEY)
 
     for m in genai.list_models():
-    if 'generateContent' in m.supported_generation_methods:
-        print(m.name)
+        if 'generateContent' in m.supported_generation_methods:
+            print(m.name)
 
     model = genai.GenerativeModel('gemini-pro-vision')
-    img = PIL.Image.open('data/Hemo-sample.jpg')
+    img = PIL.Image.open('data/HRI001.jpg')
     response = model.generate_content(["Count the number of blood cells, and how many of each types", img], stream=True)
     response.resolve()
     text = response.text
@@ -82,3 +77,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
