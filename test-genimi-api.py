@@ -1,15 +1,10 @@
 import google.generativeai as genai
-from dotenv import load_dotenv
+import os
 import PIL.Image
 import re
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-
-def load_api_key(file_path):
-    with open(file_path, 'r') as file:
-        api_key = file.read().strip()
-    return api_key
 
 def count_blood_cells(text):
   # Use a regular expression to extract the counts for each type of blood cell.
@@ -53,9 +48,8 @@ def plot_pie_chart(cell_counts):
     plt.show()
   
 def main():
-    load_dotenv()
 
-    GOOGLE_API_KEY  = load_api_key('google_api_key.txt')
+    GOOGLE_API_KEY  = (os.environ.get('GOOGLE_API_KEY_FILE'))
     genai.configure(api_key=GOOGLE_API_KEY)
 
     for m in genai.list_models():
