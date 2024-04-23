@@ -19,3 +19,23 @@ HemoCountAI for Microsoft Generative AI Hackathon
 **Styling and Layout: The application has a left frame for image and message display, and a right frame for other controls and displays. It uses custom styling for buttons and other GUI components.
 
 **API Integration: The application integrates with Google's generative AI API for image analysis, demonstrating how external APIs can be used to enhance the functionality of an application.
+
+## Back-end Installation
+
+```bash 
+  cd HemoCountAi/
+  pip install -r requirements.txt
+  python test-genimi-api.py
+```
+
+## Front-end installation
+
+```bash
+  cd HemoCountAi/frontend
+  npm install
+  npm run dev
+```
+
+## Environment Variables
+
+`GOOGLE_API_KEY_FILE`
