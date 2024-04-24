@@ -3,9 +3,6 @@ import os
 import PIL.Image
 import re
 from flask_cors import CORS
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 from flask import Flask, jsonify, request
 
 # Load the API key from an environment variable.
@@ -58,53 +55,18 @@ def count_blood_cells(text):
 
   # Return the dictionary of cell counts.
   return cell_counts
-
-# def plot_pie_chart(cell_counts):
-#     # prompt: make the pie chart look better with different shades of reds and the text within the chart white
-#     # Create a new dataframe with the cell counts.
-#     df = pd.DataFrame.from_dict(cell_counts, orient='index', columns=['Count'])
-#     print(df)
-
-    # # Set the color palette.
-    # colors = sns.color_palette('Reds_d', len(df))
-
-    # # Create the pie chart.
-    # plt.figure(figsize=(10, 6))
-    # plt.pie(df['Count'], labels=df.index, autopct='%1.1f%%', colors=colors)
-
-    # # Add a white circle in the center.
-    # centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-    # fig = plt.gcf()
-    # fig.gca().add_artist(centre_circle)
-
-    # # Equal aspect ratio ensures a circular pie chart.
-    # plt.axis('equal')
-
-    # # Set the title.
-    # plt.title('Blood Count Chart')
-
-    # # Improve the aesthetics.
-    # plt.tight_layout()
-
-    # # Show the plot.
-    # plt.show()
       
 def main(file):
 
     
     img = PIL.Image.open(file)
-    response = model.generate_content(["Count the number of blood cells, and how many of each types", img], stream=True)
+    response = model.generate_content(["Count the number of blood cells based on this example format: -RBC: 78\n-eosinophils: 2\n-basophils: 2\n-lymphocytes: 2,\n-platelets: 0", img], stream=True)
     response.resolve()
     text = response.text
 
     # Count the blood cells.
     cell_counts = count_blood_cells(text)
     return cell_counts
-
-    # # Plot pie chart of the cell counts.
-    # plot_pie_chart(cell_counts)
-    
-    serve_image('plot.png')
     
 
 
