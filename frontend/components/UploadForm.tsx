@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { Upload } from 'lucide-react';
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
 
 interface UploadFormProps {
     onButtonClick: () => void;
@@ -48,9 +52,9 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleFileChange} />
-      <button onClick={handleSubmit}>Upload</button>
+    <div className='flex flex-row'>
+      <Input className='mr-3' type="file" accept="image/*" onChange={handleFileChange} />
+      <Button variant={"outline"} onClick={handleSubmit}><Upload className='mr-2 h-4 w-4'/>Upload</Button>
     </div>
   );
 }
