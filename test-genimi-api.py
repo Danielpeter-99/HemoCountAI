@@ -54,15 +54,17 @@ def count_blood_cells(text):
     cell_counts[cell_type] = int(count)
 
   # Return the dictionary of cell counts.
+  print(cell_counts)
   return cell_counts
       
 def main(file):
 
     
     img = PIL.Image.open(file)
-    response = model.generate_content(["Count the number of blood cells based on this example format: -RBC: 78\n-eosinophils: 2\n-basophils: 2\n-lymphocytes: 2,\n-platelets: 0", img], stream=True)
+    response = model.generate_content(["Count the number of blood cells based on this example format: 'RBC: 78\neosinophils: 2\nbasophils: 2\nlymphocytes: 2\nplatelets: 0'", img], stream=True)
     response.resolve()
     text = response.text
+    print(text)
 
     # Count the blood cells.
     cell_counts = count_blood_cells(text)

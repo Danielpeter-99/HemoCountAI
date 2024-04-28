@@ -1,11 +1,12 @@
 "use client"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
 import UploadForm from "@/components/UploadForm";
 import ArleyPeter from "@/components/ArleyPeter";
 import BloodChart from "@/components/BloodChart";
 import ViLy from "@/components/ViLy";
 import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from "react";
-import Image from "next/image";
 
 import hemocount_logo from "@/public/hemocount-logo.png";
 
@@ -48,13 +49,14 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Image src={hemocount_logo} alt="HemoCountAI Logo" />
-      {/* <h1 className="text-4xl font-bold">HemoCountAI</h1> */}
+      <Image className="mb-5" src={hemocount_logo} alt="HemoCountAI Logo" />
       {buttonClicked ? (
         uploadComplete ? (
+          <div>
           <BloodChart bloodData={bloodData} />
+          </div>
         ) : (
-          <Progress value={progressValue} />
+          <Progress className="h-2 w-1/2" value={progressValue} />
         )
       ) : (
         <UploadForm onButtonClick={handleButtonClick} onUploadComplete={handleUploadComplete} />

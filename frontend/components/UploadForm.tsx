@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Upload } from 'lucide-react';
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface UploadFormProps {
     onButtonClick: () => void;
-    onUploadComplete: (data: any) => void; // Add this line
+    onUploadComplete: (data: any) => void;
   }
 
 function UploadForm({ onButtonClick, onUploadComplete }: UploadFormProps) {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [buttonClicked, setButtonClicked] = useState(false);
+    const [buttonClicked, setButtonClicked] = useState(false);
 
 const handleButtonClick = () => {
 setButtonClicked(true);
@@ -19,8 +19,15 @@ onButtonClick();
 };
 
 const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0] || null;
+  const file = event.target.files?.[0] || null;
+  
+  if (file && !file.type.startsWith('image/')) {
+    window.alert('File must be an image.');
+    event.target.value = '';
+    setSelectedFile(null);
+  } else {
     setSelectedFile(file);
+  }
 };
 
   const handleSubmit = async () => {
@@ -45,6 +52,8 @@ const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         }
       } catch (error) {
         console.error('An error occurred:', error);
+        window.alert('An error occurred: ' + (error as Error).message);
+        window.location.reload();
       }
     } else {
       console.warn('No file selected.');

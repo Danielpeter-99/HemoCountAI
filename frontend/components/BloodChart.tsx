@@ -21,7 +21,6 @@ function BloodChart({ bloodData }: { bloodData: Record<string, number> }) {
 
     return (
         <Doughnut
-            className="flex flex-col items-center justify-center p-24"
             data={data}
             options={{
                 plugins: {
@@ -30,7 +29,8 @@ function BloodChart({ bloodData }: { bloodData: Record<string, number> }) {
                         position: 'top',
                     },
                 },
-                aspectRatio: 1, // Adjust the value to make the chart smaller or larger
+                aspectRatio: 0.5,
+                responsive: true,
             }}
         />
     )
