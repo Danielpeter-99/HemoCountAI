@@ -3,3 +3,4 @@ python-dotenv==1.0.1
 Pillow==10.3.0
 Flask==3.0.3
 Flask-Cors==4.0.0
+yolov5==7.0.13
