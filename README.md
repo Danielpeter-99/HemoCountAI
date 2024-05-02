@@ -2,7 +2,7 @@
 HemoCountAI for Microsoft Generative AI Hackathon
 
 ## App POC:
-![image](https://github.com/Danielpeter-99/HemoCountAI/assets/38712706/7730907b-5617-45ba-a292-f99951188380)
+![image]([https://github.com/Danielpeter-99/HemoCountAI/assets/38712706/7730907b-5617-45ba-a292-f99951188380](https://github.com/Danielpeter-99/HemoCountAI/blob/main/App-UI.png))
 
 **This application, coded in Python with Tkinter for the GUI, appears to be a blood cell counting tool named "HemoCountAI". The key features and functionalities are as follows:**
 
