@@ -25,15 +25,7 @@ HemoCountAI for Microsoft Generative AI Hackathon
 ```bash 
   cd HemoCountAi/
   pip install -r requirements.txt
-  python test-genimi-api.py
-```
-
-## Front-end installation
-
-```bash
-  cd HemoCountAi/frontend
-  npm install
-  npm run dev
+  python genimi_based_poc_app.py
 ```
 
 ## Environment Variables
