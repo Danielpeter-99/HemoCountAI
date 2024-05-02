@@ -1,5 +1,5 @@
 # HemoCountAI
-HemoCountAI for Microsoft Generative AI Hackathon
+HemoCountAI for Google AI Hackathon 2024
 
 ## App POC:
 ![image](https://github.com/Danielpeter-99/HemoCountAI/blob/main/App-UI.png)
