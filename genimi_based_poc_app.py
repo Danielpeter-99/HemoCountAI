@@ -121,84 +121,87 @@ def create_buttons_tab2(root, left_frame, button_bg, button_fg, hover_color, rig
     download_button.bind("<Leave>", lambda e: on_leave(e, download_button, button_bg))
 
 def main():
-    root = tk.Tk()
-    root.title("HemoCountAI")
-    root.geometry("800x600")
+    try:
+        root = tk.Tk()
+        root.title("HemoCountAI")
+        root.geometry("800x600")
 
-  # Initialize the login window
-    login_window(root)
+    # Initialize the login window
+        login_window(root)
+        
+        # Create a Notebook
+        notebook = ttk.Notebook(root)
+        notebook.pack(fill='both', expand=True)
+
+        # First tab - Existing functionality
+        existing_tab = ttk.Frame(notebook)
+        notebook.add(existing_tab, text='Blood Count')
+
     
-    # Create a Notebook
-    notebook = ttk.Notebook(root)
-    notebook.pack(fill='both', expand=True)
 
-    # First tab - Existing functionality
-    existing_tab = ttk.Frame(notebook)
-    notebook.add(existing_tab, text='Blood Count')
+        # Styling options
+        button_fg =  '#ffffff'
+        hover_color = "#FFA500" #'#36648b'
+        right_bg_color = '#333333'
 
-  
+        # Create a frame for the left side elements (Image and Message)
+        left_frame = tk.Frame(existing_tab)
+        left_frame.pack(side="left", fill="both", expand=True)
 
-    # Styling options
-    button_fg =  '#ffffff'
-    hover_color = "#FFA500" #'#36648b'
-    right_bg_color = '#333333'
+        # Create a frame for the right side elements (Logo and Buttons)
+        right_frame = tk.Frame(existing_tab, bg=right_bg_color)
+        right_frame.pack(side="right", fill="both", expand=True)
 
-    # Create a frame for the left side elements (Image and Message)
-    left_frame = tk.Frame(existing_tab)
-    left_frame.pack(side="left", fill="both", expand=True)
+        # Get the dominant color from the logo
+        #dominant_color = get_dominant_color(logo_path)
+        button_bg = "#FFA500" #'#36648b' #'#{:02x}{:02x}{:02x}'.format(*dominant_color)  # Convert RGB to hex
 
-    # Create a frame for the right side elements (Logo and Buttons)
-    right_frame = tk.Frame(existing_tab, bg=right_bg_color)
-    right_frame.pack(side="right", fill="both", expand=True)
+        # Load the logo
+        logo_image = Image.open(resource_path("logo.png"))
+        logo_image.thumbnail((200, 200))  # Resize if necessary
+        logo_photo = ImageTk.PhotoImage(logo_image)
 
-    # Get the dominant color from the logo
-    #dominant_color = get_dominant_color(logo_path)
-    button_bg = "#FFA500" #'#36648b' #'#{:02x}{:02x}{:02x}'.format(*dominant_color)  # Convert RGB to hex
+        # Display the logo
+        logo_label = tk.Label(left_frame, image=logo_photo)
+        logo_label.image = logo_photo
+        logo_label.pack(pady=10)
 
-    # Load the logo
-    logo_image = Image.open(resource_path("logo.png"))
-    logo_image.thumbnail((200, 200))  # Resize if necessary
-    logo_photo = ImageTk.PhotoImage(logo_image)
-
-    # Display the logo
-    logo_label = tk.Label(left_frame, image=logo_photo)
-    logo_label.image = logo_photo
-    logo_label.pack(pady=10)
-
-    # Label for the final message
-    message_label = tk.Label(left_frame, text="Upload a thin blood smear image to count the number of blood cells")
-    message_label.pack(pady=10)
+        # Label for the final message
+        message_label = tk.Label(left_frame, text="Upload a thin blood smear image to count the number of blood cells")
+        message_label.pack(pady=10)
 
 
-    # Create buttons for the first tab
-    create_buttons_tab1(root, left_frame, button_bg, button_fg, hover_color, right_frame, right_bg_color)
+        # Create buttons for the first tab
+        create_buttons_tab1(root, left_frame, button_bg, button_fg, hover_color, right_frame, right_bg_color)
 
-    # Second tab - Exactly like the first tab
-    existing_tab_2 = ttk.Frame(notebook)
-    notebook.add(existing_tab_2, text='Lab Report')
+        # Second tab - Exactly like the first tab
+        existing_tab_2 = ttk.Frame(notebook)
+        notebook.add(existing_tab_2, text='Lab Report')
 
-    # Create a frame for the left side elements (Image and Message)
-    left_frame_2 = tk.Frame(existing_tab_2)
-    left_frame_2.pack(side="left", fill="both", expand=True)
+        # Create a frame for the left side elements (Image and Message)
+        left_frame_2 = tk.Frame(existing_tab_2)
+        left_frame_2.pack(side="left", fill="both", expand=True)
 
-    # Create a frame for the right side elements (Logo and Buttons)
-    right_frame_2 = tk.Frame(existing_tab_2, bg=right_bg_color)
-    right_frame_2.pack(side="right", fill="both", expand=True)
+        # Create a frame for the right side elements (Logo and Buttons)
+        right_frame_2 = tk.Frame(existing_tab_2, bg=right_bg_color)
+        right_frame_2.pack(side="right", fill="both", expand=True)
 
-    # Display the logo
-    logo_label_2 = tk.Label(left_frame_2, image=logo_photo)
-    logo_label_2.image = logo_photo
-    logo_label_2.pack(pady=10)
+        # Display the logo
+        logo_label_2 = tk.Label(left_frame_2, image=logo_photo)
+        logo_label_2.image = logo_photo
+        logo_label_2.pack(pady=10)
 
-    # Label for the final message
-    message_label_2 = tk.Label(left_frame_2, text="Upload a pdf of lab report to analyze")
-    message_label_2.pack(pady=5)
+        # Label for the final message
+        message_label_2 = tk.Label(left_frame_2, text="Upload a pdf of lab report to analyze")
+        message_label_2.pack(pady=5)
 
 
-    # Create buttons for the second tab
-    create_buttons_tab2(root, left_frame_2, button_bg, button_fg, hover_color, right_frame_2)
+        # Create buttons for the second tab
+        create_buttons_tab2(root, left_frame_2, button_bg, button_fg, hover_color, right_frame_2)
 
-    root.mainloop()
+        root.mainloop()
+    except Exception as e:
+        messagebox.showwarning("Error", f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()

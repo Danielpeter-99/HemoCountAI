@@ -3,6 +3,7 @@ import yolov5
 import os
 import shutil
 
+
 def clean_save_path(folder_path):
     # Check if the folder exists
     if os.path.exists(folder_path):
@@ -21,9 +22,9 @@ def clean_save_path(folder_path):
     else:
         print("Folder does not exist.")
 
-def detect_blood_cell(img):
+def detect_blood_cell(img, out_path):
     # load model
-    model = yolov5.load('keremberke/yolov5s-blood-cell')
+    model = yolov5.load('keremberke/yolov5n-blood-cell')
   
     # set model parameters
     model.conf = 0.25  # NMS confidence threshold
@@ -50,6 +51,6 @@ def detect_blood_cell(img):
     # show detection bounding boxes on image
     #results.show()
 
-    out_path = "processed_image/"
+    out_path = os.path.join(out_path,"processed_image/")
     clean_save_path(out_path)
     results.save(save_dir=out_path)

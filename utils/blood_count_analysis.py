@@ -1,3 +1,4 @@
+import winreg
 import google.generativeai as genai
 import os
 import tkinter as tk
@@ -15,6 +16,11 @@ import matplotlib.pyplot as plt
 from utils.image_processing import detect_blood_cell
 import glob
 
+reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders")
+
+downloads_path = winreg.QueryValueEx(reg_key, "{374DE290-123F-4565-9164-39C4925E467B}")[0]
+
+winreg.CloseKey(reg_key)
 
 GOOGLE_API_KEY  = (os.environ.get('GOOGLE_API_KEY_FILE'))
 
@@ -46,8 +52,8 @@ def open_image(root, image_label):
     global original_image
 
     input_path = filedialog.askopenfilename()
-    detect_blood_cell(input_path)
-    file_path = glob.glob(os.path.join("processed_image/", '*.jpg'))[0]
+    detect_blood_cell(input_path, downloads_path)
+    file_path = glob.glob(os.path.join(downloads_path, "processed_image/", '*.jpg'))[0]
 
     if file_path:
         original_image = Image.open(file_path)
