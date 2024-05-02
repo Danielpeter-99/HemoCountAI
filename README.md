@@ -35,3 +35,9 @@ HemoCountAI for Google AI Hackathon 2024
 ## Environment Variables
 
 `GOOGLE_API_KEY_FILE`
+
+## Compiling an executable
+
+```bash
+pyinstaller --noconfirm --onefile --windowed --icon ".../logo.ico" --name "HemoCountAI" --add-data ".../HemoCountAI-1/.venv/Lib/site-packages/ultralytics;ultralytics/" --add-data ".../HemoCountAI-1/utils;utils/" --add-data ".../HemoCountAI-1/logo.png;."  ".../HemoCountAI-1/genimi_based_poc_app.py"
+```

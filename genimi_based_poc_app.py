@@ -1,9 +1,19 @@
 import tkinter as tk
+import os
+import sys
 from tkinter import ttk
 from PIL import Image, ImageTk
 from utils.blood_count_analysis import open_image, analyze_image
 from utils.lab_report_analysis import upload_pdf, analyze_pdf, download_sample_pdf
 from tkinter import messagebox
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 def verify_login(username, password, login_top_level, root):
     # Dummy authentication logic (replace with your own logic)
@@ -141,15 +151,12 @@ def main():
     right_frame = tk.Frame(existing_tab, bg=right_bg_color)
     right_frame.pack(side="right", fill="both", expand=True)
 
-    # Path to your logo image
-    logo_path = 'logo.png'  # Replace with your logo image path
-
     # Get the dominant color from the logo
     #dominant_color = get_dominant_color(logo_path)
     button_bg = "#FFA500" #'#36648b' #'#{:02x}{:02x}{:02x}'.format(*dominant_color)  # Convert RGB to hex
 
     # Load the logo
-    logo_image = Image.open(logo_path)
+    logo_image = Image.open(resource_path("logo.png"))
     logo_image.thumbnail((200, 200))  # Resize if necessary
     logo_photo = ImageTk.PhotoImage(logo_image)
 
