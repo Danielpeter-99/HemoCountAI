@@ -14,6 +14,10 @@ HemoCountAI for Google AI Hackathon 2024
 
 **Data Visualization: After analysis, the application generates a pie chart showing the count and percentages of different blood cell types using matplotlib. The pie chart is displayed in the GUI.
 
+**Lab Report Analysis: The additional feature of the application is analyzing the uploaded lab report to analyze abnormal lab values.
+
+**Download interpreted lab reports: The user has option to download lab reports with AI-generated notes.
+
 **Interactive GUI Components: The GUI includes interactive elements like buttons for uploading images, analyzing them, and closing the application. These buttons change color when hovered over, enhancing user experience.
 
 **Styling and Layout: The application has a left frame for image and message display, and a right frame for other controls and displays. It uses custom styling for buttons and other GUI components.
