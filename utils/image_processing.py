@@ -5,6 +5,15 @@ import shutil
 
 
 def clean_save_path(folder_path):
+    """
+    Removes a folder and its contents if it exists and is not empty.
+
+    Args:
+        folder_path (str): The path to the folder to be cleaned.
+
+    Returns:
+        None
+    """
     # Check if the folder exists
     if os.path.exists(folder_path):
         try:
@@ -23,6 +32,18 @@ def clean_save_path(folder_path):
         print("Folder does not exist.")
 
 def detect_blood_cell(img, out_path):
+    """
+    Detects blood cells in an image using the YOLOv5 model.
+
+    Args:
+        img (str or numpy.ndarray): The input image to perform inference on.
+
+    Returns:
+        None
+
+    Raises:
+        None
+    """
     # load model
     model = yolov5.load('keremberke/yolov5n-blood-cell')
   

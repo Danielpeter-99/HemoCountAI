@@ -17,11 +17,21 @@ GOOGLE_API_KEY  = (os.environ.get('GOOGLE_API_KEY_FILE'))
 pdf_path = None
 pdf_text = None
 pdf_image = None
-def upload_pdf(root, right_frame):
+def upload_pdf(right_frame):
+    """
+    Uploads a PDF file and extracts its text content.
+    
+    Args:
+        root: The root Tkinter object.
+        right_frame: The right frame Tkinter object.
+    """
     global pdf_path
     global pdf_text
     global pdf_image
+    
     pdf_path = filedialog.askopenfilename()
+    
+    # Extract text from the PDF file
     with open(pdf_path, 'rb') as file:
         reader = PyPDF2.PdfReader(file)
         text = ""
@@ -30,6 +40,7 @@ def upload_pdf(root, right_frame):
         pdf_text = text
 
     file_path = "data/lab-reports/CBC-sample-report-with-notes-scaled.jpg"
+    
     if file_path:
         original_image = Image.open(file_path)
         thumbnail = original_image.copy()
@@ -41,6 +52,17 @@ def upload_pdf(root, right_frame):
 
 answer = None
 def generate_answer(question, text, left_frame):
+    """
+    Generates an answer to the given question based on the provided text.
+
+    Args:
+        question (str): The question to be answered.
+        text (str): The context or text to generate the answer from.
+        left_frame: The left frame to display the answer label.
+
+    Returns:
+        None
+    """
     global answer
     genai.configure(api_key=GOOGLE_API_KEY)
     
@@ -65,6 +87,20 @@ def analyze_pdf(left_frame):
 
 
 # Function to open the sample PDF file in a web browser
+def download_sample_pdf():
+    """
+    Downloads a sample PDF file and adds a new page with modified content.
+
+    This function opens an existing PDF file, creates a new page with modified content,
+    and saves the modified PDF as a new file.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    """
+    # Rest of the code...
 def download_sample_pdf():
     # Open the PDF file in read-binary mode
 

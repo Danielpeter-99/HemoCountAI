@@ -15,6 +15,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from utils.image_processing import detect_blood_cell
 import glob
+import os
 
 reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders")
 
@@ -23,8 +24,24 @@ downloads_path = winreg.QueryValueEx(reg_key, "{374DE290-123F-4565-9164-39C4925E
 winreg.CloseKey(reg_key)
 
 GOOGLE_API_KEY  = (os.environ.get('GOOGLE_API_KEY_FILE'))
-
 def count_blood_cells(text):
+    """
+    Count the number of blood cells and their percentages from the given text.
+
+    Args:
+        text (str): The text containing the blood cell counts.
+
+    Returns:
+        dict: A dictionary containing the blood cell types as keys and their counts as values.
+              If available, the dictionary also contains the blood cell type percentages as keys and their values.
+
+    Example:
+        >>> text = "Red Blood Cells: 4,500,000 (45%)\nWhite Blood Cells: 8,000 (0.8%)\nPlatelets: 150,000"
+        >>> count_blood_cells(text)
+        {'Red Blood Cells': 4500000, 'Red Blood Cells_percentage': 45.0,
+         'White Blood Cells': 8000, 'White Blood Cells_percentage': 0.8,
+         'Platelets': 150000}
+    """
     blood_counts = {}
 
     # Split the text by newline character
@@ -44,11 +61,21 @@ def count_blood_cells(text):
                 blood_counts[f'{blood_cell_type}_percentage'] = percentage
 
     return blood_counts
+    return blood_counts
 
 # Global variable to hold the original image
 original_image = None
 
-def open_image(root, image_label):
+def open_image(image_label):
+    """
+    Opens an image file and displays it in the given image_label.
+
+    Parameters:
+    - image_label: The label widget where the image will be displayed.
+
+    Returns:
+    None
+    """
     global original_image
 
     input_path = filedialog.askopenfilename()
@@ -63,7 +90,17 @@ def open_image(root, image_label):
         image_label.config(image=photo)
         image_label.image = photo  # Keep a reference to avoid garbage collection
 
-def analyze_image(image_label, right_frame, right_bg_color):
+def analyze_image(right_frame, right_bg_color):
+    """
+    Analyzes the uploaded image and generates a blood count chart.
+
+    Args:
+        right_frame: The Tkinter frame where the chart will be embedded.
+        right_bg_color: The background color of the frame.
+
+    Returns:
+        None
+    """
     global original_image
     genai.configure(api_key=GOOGLE_API_KEY)
 

@@ -24,6 +24,15 @@ def verify_login(username, password, login_top_level, root):
         messagebox.showwarning("Login Failed", "Incorrect username or password")
 
 def login_window(root):
+    """
+    Creates a top-level window for the login.
+
+    Args:
+        root: The root window of the application.
+
+    Returns:
+        None
+    """
     # Create a top-level window for the login
     login_top_level = tk.Toplevel(root)
     login_top_level.title("Login")
@@ -55,6 +64,19 @@ def on_leave(event, widget, color):
     widget.config(bg=color)
 
 def create_buttons_tab1(root, left_frame, button_bg, button_fg, hover_color, right_frame, right_bg_color):
+    """
+    Create buttons for Tab 1.
+
+    Args:
+        root: The root window.
+        left_frame: The frame where the buttons will be placed.
+        button_bg: The background color of the buttons.
+        button_fg: The foreground color of the buttons.
+        hover_color: The color when the mouse hovers over the buttons.
+        right_frame: The frame where the image label will be placed.
+        right_bg_color: The background color of the right frame.
+    """
+
     # Styling options
     button_font = ('Helvetica', 12, 'bold')
 
@@ -63,13 +85,13 @@ def create_buttons_tab1(root, left_frame, button_bg, button_fg, hover_color, rig
     button_frame.pack(pady=5)
 
     # Upload Button
-    upload_button = tk.Button(button_frame, text="Upload", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: open_image(root, image_label))
+    upload_button = tk.Button(button_frame, text="Upload", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: open_image(image_label))
     upload_button.pack(side="left", padx=5)
     upload_button.bind("<Enter>", lambda e: on_enter(e, upload_button, hover_color))
     upload_button.bind("<Leave>", lambda e: on_leave(e, upload_button, button_bg))
 
     # Analyze Button
-    analyze_button = tk.Button(button_frame, text="Analyze", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: analyze_image(image_label, right_frame, right_bg_color))
+    analyze_button = tk.Button(button_frame, text="Analyze", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: analyze_image(right_frame, right_bg_color))
     analyze_button.pack(side="left", padx=5)
     analyze_button.bind("<Enter>", lambda e: on_enter(e, analyze_button, hover_color))
     analyze_button.bind("<Leave>", lambda e: on_leave(e, analyze_button, button_bg))
@@ -85,6 +107,18 @@ def create_buttons_tab1(root, left_frame, button_bg, button_fg, hover_color, rig
     image_label.pack(pady=20)
 
 def create_buttons_tab2(root, left_frame, button_bg, button_fg, hover_color, right_frame):
+    """
+    Create buttons for the second tab.
+
+    Args:
+        root (tkinter.Tk): The root window of the application.
+        left_frame (tkinter.Frame): The frame where the buttons will be placed.
+        button_bg (str): The background color of the buttons.
+        button_fg (str): The foreground color (text color) of the buttons.
+        hover_color (str): The color of the buttons when hovered.
+        right_frame (tkinter.Frame): The frame where the right-side content will be displayed.
+    """
+
     # Styling options
     button_font = ('Helvetica', 12, 'bold')
 
@@ -93,7 +127,7 @@ def create_buttons_tab2(root, left_frame, button_bg, button_fg, hover_color, rig
     button_frame.pack(pady=5)
 
     # Upload Button
-    upload_button = tk.Button(button_frame, text="Upload", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: upload_pdf(root, right_frame))
+    upload_button = tk.Button(button_frame, text="Upload", font=button_font, bg=button_bg, fg=button_fg, relief="raised", borderwidth=2, command=lambda: upload_pdf(right_frame))
     upload_button.pack(side="left", padx=5)
     upload_button.bind("<Enter>", lambda e: on_enter(e, upload_button, hover_color))
     upload_button.bind("<Leave>", lambda e: on_leave(e, upload_button, button_bg))
