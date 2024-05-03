@@ -36,6 +36,8 @@ HemoCountAI for Google AI Hackathon 2024
 
 `GOOGLE_API_KEY_FILE`
 
+Please follow this instruction: https://ai.google.dev/gemini-api/docs/api-key if you haven't obtained a Google Genimi API key.
+
 ## Compiling an executable
 
 ```bash
