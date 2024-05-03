@@ -3,6 +3,7 @@ import yolov5
 import os
 import shutil
 
+
 def clean_save_path(folder_path):
     """
     Removes a folder and its contents if it exists and is not empty.
@@ -30,7 +31,7 @@ def clean_save_path(folder_path):
     else:
         print("Folder does not exist.")
 
-def detect_blood_cell(img):
+def detect_blood_cell(img, out_path):
     """
     Detects blood cells in an image using the YOLOv5 model.
 
@@ -43,8 +44,6 @@ def detect_blood_cell(img):
     Raises:
         None
     """
-    # Rest of the code...
-def detect_blood_cell(img):
     # load model
     model = yolov5.load('keremberke/yolov5n-blood-cell')
   
@@ -73,6 +72,6 @@ def detect_blood_cell(img):
     # show detection bounding boxes on image
     #results.show()
 
-    out_path = "processed_image/"
+    out_path = os.path.join(out_path,"processed_image/")
     clean_save_path(out_path)
     results.save(save_dir=out_path)
